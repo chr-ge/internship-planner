@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -10,6 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+//Redux
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/actions/userActions';
 
 const styles = (theme) => ({
     ...theme.css
@@ -21,31 +23,23 @@ export class login extends Component {
         this.state = {
             email: '',
             password: '',
-            loading: false,
             errors: {}
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.UI.errors){
+            this.setState({errors : nextProps.UI.errors });
         }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.setState({ loading: true });
         const userData = {
             email: this.state.email,
             password: this.state.password
         }
-        axios.post('/login', userData)
-            .then((result) => {
-                localStorage.setImage('FBidToken', `Bearer ${result.data.token}`);
-                this.setState({ loading: false });
-                this.props.history.push('/');
-            })
-            .catch((error) => {
-                this.setState({
-                    errors: error.response.data,
-                    loading: false
-                })
-            })
-
+        this.props.loginUser(userData, this.props.history);
     }
 
     handleChange = (event) => {
@@ -55,8 +49,8 @@ export class login extends Component {
     }
 
     render() {
-        const { classes } = this.props;
-        const { errors, loading } = this.state;
+        const { classes, UI: { loading } } = this.props;
+        const { errors } = this.state;
         return (
             <div className={classes.form}>
                 <img src={AppLogo} alt="Internship Planner Logo" className={classes.image}/>
@@ -110,7 +104,15 @@ export class login extends Component {
 }
 
 login.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    UI: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(login);
+const mapStateToProps = (state) => ({
+    user: state.user,
+    UI: state.UI
+});
+
+export default connect(mapStateToProps, { loginUser })(withStyles(styles)(login));

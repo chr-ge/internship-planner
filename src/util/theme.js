@@ -1,46 +1,100 @@
 export default {
-    palette: {
-        primary: {
-            light: '#B0F4E6',
-            main: '#12D3CF',
-            dark: '#0D0221',
-            contrastText: '#FCF9EC'
-        },
-        secondary: {
-            light: '#B0F4E6',
-            main: '#67EACA',
-            dark: '#12D3CF',
-            contrastText: '#FCF9EC'
-        }
+  palette: {
+    primary: {
+      light: "#B0F4E6",
+      main: "#12D3CF",
+      dark: "#0D0221",
+      contrastText: "#FCF9EC",
     },
-    typography: {
-        useNextVariants: true
+    secondary: {
+      light: "#B0F4E6",
+      main: "#67EACA",
+      dark: "#12D3CF",
+      contrastText: "#FCF9EC",
     },
-    css:{
-        form: {
-            textAlign: 'center',
-            margin: '0 auto',
-            maxWidth: 600
+  },
+  typography: {
+    useNextVariants: true,
+  },
+  css: {
+    form: {
+      textAlign: "center",
+      margin: "0 auto",
+      maxWidth: 600,
+    },
+    image: {
+      margin: "20px auto",
+    },
+    pageTitle: {
+      margin: "10px auto",
+    },
+    textField: {
+      margin: "10px auto",
+    },
+    button: {
+      marginTop: 20,
+      position: "relative",
+    },
+    wrongError: {
+      color: "#F44336",
+      marginTop: 10,
+    },
+    progress: {
+      position: "absolute",
+    },
+    invisibleSeparator: {
+      border: "none",
+      margin: 4,
+    },
+    visibleSeparator: {
+      width: "100%",
+      borderBottom: "1px solid rgba(0,0,0,0.1)",
+      marginBottom: 20,
+    },
+    paper: {
+      padding: 20,
+    },
+    profile: {
+      "& .image-wrapper": {
+        textAlign: "center",
+        position: "relative",
+        "& button": {
+          position: "absolute",
+          top: "80%",
+          left: "70%",
         },
-        image: {
-            margin: '20px auto'
+      },
+      "& .profile-image": {
+        width: 200,
+        height: 200,
+        objectFit: "cover",
+        maxWidth: "100%",
+        borderRadius: "50%",
+      },
+      "& .profile-details": {
+        textAlign: "center",
+        "& span, svg": {
+          verticalAlign: "middle",
         },
-        pageTitle: {
-            margin: '10px auto'
+        "& a": {
+          color: "#00bcd4",
         },
-        textField: {
-            margin: '10px auto'
+      },
+      "& hr": {
+        border: "none",
+        margin: "0 0 10px 0",
+      },
+      "& svg.button": {
+        "&:hover": {
+          cursor: "pointer",
         },
-        button: {
-            marginTop: 20,
-            position: 'relative'
-        },
-        wrongError: {
-            color: '#F44336',
-            marginTop: 10
-        },
-        progress: {
-            position: 'absolute'
-        }
-    }
-}
+      },
+    },
+    buttons: {
+      textAlign: "center",
+      "& a": {
+        margin: "20px 10px",
+      },
+    },
+  },
+};
