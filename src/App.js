@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import './App.css';
 
 //Components
 import Navbar from './components/Navbar';
@@ -29,6 +29,31 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true
+  },
+  loginContainer: {
+    textAlign: 'center',
+    margin: '0 auto',
+    maxWidth: 600
+  },
+  image: {
+      margin: '20px auto'
+  },
+  pageTitle: {
+      margin: '10px auto'
+  },
+  textField: {
+      margin: '10px auto'
+  },
+  button: {
+      marginTop: 20,
+      position: 'relative'
+  },
+  wrongError: {
+      color: '#F44336',
+      marginTop: 10
+  },
+  progress: {
+      position: 'absolute'
   }
 });
 
@@ -40,9 +65,9 @@ const App = () => {
           <Navbar />
           <div className="container">
             <Switch>
-              <Route path="/" component={home} />
-              <Route path="/login" component={login} />
-              <Route path="/signup" component={signup} />
+              <Route exact path="/" component={home} />
+              <Route exact path="/login" component={login} />
+              <Route exact path="/signup" component={signup} />
             </Switch>
           </div>
         </Router>
