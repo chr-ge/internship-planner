@@ -12,8 +12,8 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = (theme) => ({
-    ...theme
-})
+    ...theme.css
+});
 
 export class signup extends Component {
     constructor(){
@@ -21,6 +21,8 @@ export class signup extends Component {
         this.state = {
             email: '',
             password: '',
+            confirmPassword: '',
+            handle: '',
             loading: false,
             errors: {}
         }
@@ -29,12 +31,15 @@ export class signup extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.setState({ loading: true });
-        const userData = {
+        const newUserData = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword,
+            handle: this.state.handle
         }
-        axios.post('/login', userData)
+        axios.post('/signup', newUserData)
             .then((result) => {
+                localStorage.setImage('FBidToken', `Bearer ${result.data.token}`);
                 this.setState({ loading: false });
                 this.props.history.push('/');
             })
@@ -57,9 +62,9 @@ export class signup extends Component {
         const { classes } = this.props;
         const { errors, loading } = this.state;
         return (
-            <div className={classes.loginContainer}>
+            <div className={classes.form}>
                 <img src={AppLogo} alt="Internship Planner Logo" className={classes.image}/>
-                <Typography variant="h2" className={classes.pageTitle}>Login</Typography>
+                <Typography variant="h2" className={classes.pageTitle}>Signup</Typography>
                 <form noValidate onSubmit={this.handleSubmit}>
                     <TextField 
                         id="email" 
@@ -85,6 +90,30 @@ export class signup extends Component {
                         onChange={this.handleChange}
                         fullWidth
                     />
+                    <TextField 
+                        id="confirmPassword" 
+                        name="confirmPassword"
+                        type="password" 
+                        label="Confirm Password" 
+                        className={classes.textField}
+                        helperText={errors.confirmPassword}
+                        error={errors.confirmPassword ? true : false}
+                        value={this.state.confirmPassword}
+                        onChange={this.handleChange}
+                        fullWidth
+                    />
+                    <TextField 
+                        id="handle" 
+                        name="handle"
+                        type="text" 
+                        label="Handle"
+                        className={classes.textField}
+                        helperText={errors.handle}
+                        error={errors.handle ? true : false}
+                        value={this.state.handle}
+                        onChange={this.handleChange}
+                        fullWidth
+                    />
                     {errors.general && (
                         <Typography variant="body2" className={classes.wrongError}>
                             {errors.general}
@@ -97,7 +126,7 @@ export class signup extends Component {
                         className={classes.button}
                         disabled={loading}
                     >
-                        Login
+                        Signup
                         { loading && <CircularProgress size={30} className={classes.progess}/> }
                     </Button>
                     <br />
@@ -110,6 +139,6 @@ export class signup extends Component {
 
 signup.propTypes = {
     classes: PropTypes.object.isRequired
-}
+};
 
-export default withStyles(styles)(signup)
+export default withStyles(styles)(signup);

@@ -12,8 +12,8 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = (theme) => ({
-    ...theme
-})
+    ...theme.css
+});
 
 export class login extends Component {
     constructor(){
@@ -35,6 +35,7 @@ export class login extends Component {
         }
         axios.post('/login', userData)
             .then((result) => {
+                localStorage.setImage('FBidToken', `Bearer ${result.data.token}`);
                 this.setState({ loading: false });
                 this.props.history.push('/');
             })
@@ -57,7 +58,7 @@ export class login extends Component {
         const { classes } = this.props;
         const { errors, loading } = this.state;
         return (
-            <div className={classes.loginContainer}>
+            <div className={classes.form}>
                 <img src={AppLogo} alt="Internship Planner Logo" className={classes.image}/>
                 <Typography variant="h2" className={classes.pageTitle}>Login</Typography>
                 <form noValidate onSubmit={this.handleSubmit}>
@@ -110,6 +111,6 @@ export class login extends Component {
 
 login.propTypes = {
     classes: PropTypes.object.isRequired
-}
+};
 
-export default withStyles(styles)(login)
+export default withStyles(styles)(login);
