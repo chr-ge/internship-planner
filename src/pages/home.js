@@ -13,7 +13,6 @@ export class home extends Component {
     componentDidMount(){
         axios.get('/internships')
             .then(result => {
-                console.log(result.data);
                 this.setState({
                     internships: result.data
                 })
@@ -23,10 +22,11 @@ export class home extends Component {
 
     render() {
         let recentInternshipsMarkup = this.state.internships 
-            ? (this.state.internships.map((internship) => <Internship internship={internship} />)) 
+            ? (this.state.internships.map((internship) => 
+                <Internship key={internship.internshipId} internship={internship} />)) 
             : <p>Loading...</p>;
         return (
-            <Grid container spacing={16}>
+            <Grid container spacing={2}>
                 <Grid item sm={8} xs={12}>
                     {recentInternshipsMarkup}
                 </Grid>
