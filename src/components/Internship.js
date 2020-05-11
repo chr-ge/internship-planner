@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import MyButton from '../util/MyButton';
 import LikeButton from './LikeButton';
+import DeleteInternship from './DeleteInternship';
 
 //material-ui
 import Card from '@material-ui/core/Card';
@@ -20,6 +21,7 @@ import { connect } from 'react-redux';
 
 const styles = {
     card: {
+        position: 'relative',
         display: 'flex',
         marginBottom: 20
     },
@@ -50,10 +52,16 @@ export class Internship extends Component {
 
     render() {
         dayjs.extend(relativeTime);
+
         const { classes, 
                 internship: { body, createdAt, userImage, userHandle, internshipId, likeCount, commentCount },
                 user: { authenticated, credentials: { handle } }
         } = this.props;
+
+        const deleteButton = authenticated && userHandle === handle 
+            ? <DeleteInternship internshipId={internshipId} />
+            : null;
+
         return (
             <Card className={classes.card}>
                 <CardMedia image={userImage} title="User Image" className={classes.image}/>
@@ -66,6 +74,7 @@ export class Internship extends Component {
                     >
                         {userHandle}
                     </Typography>
+                    {deleteButton}
                     <Typography variant="body2" color="textSecondary">
                         {dayjs(createdAt).fromNow()}
                     </Typography>

@@ -1,4 +1,4 @@
-import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP } from '../types';
+import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP } from '../types';
 import axios from 'axios';
 
 export const getInternships = () => (dispatch) => {
@@ -38,6 +38,18 @@ export const unlikeInternship = (internshipId) => (dispatch) => {
             dispatch({
                 type: UNLIKE_INTERNSHIP,
                 payload: result.data
+            });
+        })
+        .catch((error) => console.log(error));
+}
+
+export const deleteInternship = (internshipId) => (dispatch) => {
+    axios
+        .delete(`/internship/${internshipId}`)
+        .then(() => {
+            dispatch({
+                type: DELETE_INTERNSHIP,
+                payload: internshipId 
             });
         })
         .catch((error) => console.log(error));

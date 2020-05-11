@@ -1,4 +1,4 @@
-import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP } from '../types';
+import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP } from '../types';
 
 const initialState = {
     internships: [],
@@ -23,12 +23,18 @@ export default function(state = initialState, action){
         case UNLIKE_INTERNSHIP:
             let index = state.internships
                 .findIndex((internship) => internship.internshipId === action.payload.internshipId);
-                state.internships[index] = action.payload;
+            state.internships[index] = action.payload;
             if (state.internship.internshipId === action.payload.internshipId) {
                 state.internship = action.payload;
             }
             return {
                 ...state
+            }
+        case DELETE_INTERNSHIP:
+            return {
+                ...state,
+                internships: state.internships.filter((internship) => 
+                    internship.internshipId !== action.payload )
             }
         default:
             return state;
