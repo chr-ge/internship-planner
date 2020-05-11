@@ -22,7 +22,7 @@ import user from './pages/user';
 
 const theme = createMuiTheme(themeObject);
 
-//axios.defaults.baseURL = 'https://us-east4-internshipplanner.cloudfunctions.net/api';
+axios.defaults.baseURL = 'https://us-east4-internshipplanner.cloudfunctions.net/api';
 
 const token = localStorage.FBidToken;
 if(token){
