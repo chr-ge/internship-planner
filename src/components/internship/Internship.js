@@ -70,7 +70,7 @@ class Internship extends Component {
                         <ChatIcon color="primary" />
                     </MyButton>
                     <span>{commentCount} {commentCount === 1 ? 'Comment' : 'Comments'}</span>
-                    <InternshipDialog internshipId={internshipId} userHandle={userHandle} />
+                    <InternshipDialog internshipId={internshipId} userHandle={userHandle} openDialog={this.props.openDialog}/>
                 </CardContent>
             </Card>
         )
@@ -80,7 +80,8 @@ class Internship extends Component {
 Internship.propTypes = {
     classes: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    internship: PropTypes.object.isRequired
+    internship: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({

@@ -12,11 +12,16 @@ import { getUserData } from '../redux/actions/dataActions';
 
 class user extends Component {
     state = {
-        profile: null
+        profile: null,
+        internshipIdParam: null
     }
 
     componentDidMount(){
         const handle = this.props.match.params.handle;
+        const internshipId = this.props.match.params.internshipId;
+
+        if(internshipId) this.setState({ internshipIdParam: internshipId });
+
         this.props.getUserData(handle);
         axios
             .get(`/user/${handle}`)
@@ -28,13 +33,21 @@ class user extends Component {
 
     render() {
         const { internships, loading } = this.props.data;
+        const { internshipIdParam } = this.state;
 
         const internshipsMarkup = loading
             ? <p>Loading...</p>
             : internships === null
             ? <p>No internships from this user</p>
-            : internships.map((internship) => 
-                <Internship key={internship.internshipId} internship={internship} />);
+            : !internshipIdParam
+            ? internships.map((internship) => 
+                <Internship key={internship.internshipId} internship={internship} />)
+            : internships.map((internship) => {
+                if(internship.internshipId !== internshipIdParam)
+                    return <Internship key={internship.internshipId} internship={internship} />
+                else
+                    return <Internship key={internship.internshipId} internship={internship} openDialog/>
+            });
 
         return (
             <Grid container spacing={2}>
