@@ -1,4 +1,6 @@
-import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP, POST_INTERNSHIP, SET_INTERNSHIP } from '../types';
+import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP,
+     DELETE_INTERNSHIP, POST_INTERNSHIP, SET_INTERNSHIP, SUBMIT_COMMENT
+} from '../types';
 
 const initialState = {
     internships: [],
@@ -48,6 +50,14 @@ export default function(state = initialState, action){
                     action.payload,
                     ...state.internships
                 ]
+            }
+        case SUBMIT_COMMENT:
+            return {
+                ...state,
+                internship: {
+                    ...state.internship,
+                    comments: [action.payload, ...state.internship.comments]
+                }
             }
         default:
             return state;

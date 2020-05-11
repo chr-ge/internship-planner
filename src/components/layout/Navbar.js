@@ -14,7 +14,7 @@ import HomeIcon from '@material-ui/icons/Home';
 //Redux
 import { connect } from 'react-redux';
 
-export class Navbar extends Component {
+class Navbar extends Component {
     render() {
         const { authenticated } = this.props;
         return (

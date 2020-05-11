@@ -36,7 +36,7 @@ const styles = {
     }
 }
 
-export class PostInternship extends Component {
+class PostInternship extends Component {
     state = {
         open: false,
         body: '',

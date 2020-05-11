@@ -4,8 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
+import CommentForm from './CommentForm';
+import Comments from './Comments';
 import dayjs from 'dayjs';
-import theme from "../../util/theme";
+import theme from '../../util/theme';
 
 //material-ui
 import Grid from '@material-ui/core/Grid';
@@ -19,7 +21,7 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore';
 import ChatIcon from '@material-ui/icons/Chat';
 //Redux
 import { connect } from 'react-redux';
-import { getInternship } from '../../redux/actions/dataActions';
+import { getInternship, clearErrors } from '../../redux/actions/dataActions';
 
 const styles = {
     ...theme.css,
@@ -48,7 +50,7 @@ const styles = {
     },
 }
 
-export class InternshipDialog extends Component {
+class InternshipDialog extends Component {
     state = {
         open: false
     }
@@ -60,11 +62,12 @@ export class InternshipDialog extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
+        this.props.clearErrors();
     }
 
     render() {
         const { classes,
-                internship: { internshipId, body, createdAt, likeCount, commentCount, userImage, userHandle }, 
+                internship: { internshipId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments }, 
                 loading 
         } = this.props;
 
@@ -98,6 +101,9 @@ export class InternshipDialog extends Component {
                         </MyButton>
                         <span>{commentCount} {commentCount === 1 ? 'Comment' : 'Comments'}</span>
                     </Grid>
+                    <hr className={classes.visibleSeparator}/>
+                    <CommentForm internshipId={internshipId} />
+                    <Comments comments={comments} />
                 </Grid>)
 
         return (
@@ -127,7 +133,8 @@ InternshipDialog.propTypes = {
     userHandle: PropTypes.string.isRequired,
     internship: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
-    getInternship: PropTypes.func.isRequired
+    getInternship: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -135,4 +142,9 @@ const mapStateToProps = (state) => ({
     internship: state.data.internship
 });
 
-export default connect(mapStateToProps, { getInternship })(withStyles(styles)(InternshipDialog));
+const mapActionsToProps = {
+    getInternship,
+    clearErrors
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(InternshipDialog));

@@ -10,7 +10,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { connect } from 'react-redux';
 import { likeInternship, unlikeInternship } from '../../redux/actions/dataActions';
 
-export class LikeButton extends Component {
+class LikeButton extends Component {
     likedInternship = () => {
         if (this.props.user.likes &&
             this.props.user.likes.find((like) => like.internshipId === this.props.internshipId))

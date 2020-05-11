@@ -34,7 +34,7 @@ const styles = {
     }
 }
 
-export class Internship extends Component {
+class Internship extends Component {
     render() {
         dayjs.extend(relativeTime);
 

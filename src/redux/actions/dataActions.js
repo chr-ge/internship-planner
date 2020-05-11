@@ -1,5 +1,5 @@
 import { 
-    SET_INTERNSHIPS, SET_INTERNSHIP, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP,
+    SET_INTERNSHIPS, SET_INTERNSHIP, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, SUBMIT_COMMENT,
     DELETE_INTERNSHIP, SET_ERRORS, CLEAR_ERRORS, POST_INTERNSHIP, LOADING_UI, STOP_LOADING_UI
 } from '../types';
 import axios from 'axios';
@@ -45,7 +45,7 @@ export const postInternship = (newInternship) => (dispatch) => {
                 type: POST_INTERNSHIP,
                 payload: result.data
             });
-            dispatch({ type: CLEAR_ERRORS });
+            dispatch(clearErrors());
         })
         .catch((error) => {
             dispatch({
@@ -79,6 +79,24 @@ export const unlikeInternship = (internshipId) => (dispatch) => {
         .catch((error) => console.log(error));
 };
 
+export const submitComment = (internshipId, commentData) => (dispatch) => {
+    axios
+        .post(`/internship/${internshipId}/comment`, commentData)
+        .then((result) => {
+            dispatch({
+                type: SUBMIT_COMMENT,
+                payload: result.data
+            });
+            dispatch(clearErrors());
+        })
+        .catch((error) => {
+            dispatch({
+                type: SET_ERRORS,
+                payload: error.response.data
+            });
+        });
+}
+
 export const deleteInternship = (internshipId) => (dispatch) => {
     axios
         .delete(`/internship/${internshipId}`)
@@ -90,6 +108,24 @@ export const deleteInternship = (internshipId) => (dispatch) => {
         })
         .catch((error) => console.log(error));
 };
+
+export const getUserData = (userHandle) => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+    axios
+        .get(`/user/${userHandle}`)
+        .then((result) => {
+            dispatch({
+                type: SET_INTERNSHIPS,
+                payload: result.data.internships
+            });
+        })
+        .catch(() => {
+            dispatch({
+                type: SET_INTERNSHIPS,
+                payload: null
+            });
+        });
+}
 
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
