@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Internship from '../components/internship/Internship';
 import Profile from '../components/profile/Profile';
+import InternshipSkeleton from '../util/InternshipSkeleton';
 
 //material-ui
 import Grid from '@material-ui/core/Grid';
@@ -19,7 +20,7 @@ export class home extends Component {
         let recentInternshipsMarkup = !loading
             ? (internships.map((internship) => 
                 <Internship key={internship.internshipId} internship={internship} />)) 
-            : <p>Loading...</p>;
+            : <InternshipSkeleton />;
         return (
             <Grid container spacing={2}>
                 <Grid item sm={8} xs={12}>

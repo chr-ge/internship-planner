@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import MyButton from '../../util/MyButton';
 import EditDetails from './EditDetails';
 import theme from "../../util/theme";
+import ProfileSkeleton from '../../util/ProfileSkeleton';
 
 //material-ui
 import Button from '@material-ui/core/Button';
@@ -105,7 +106,7 @@ class Profile extends Component {
           <Button variant="contained" color="secondary" component={Link} to="/signup">Signup</Button>
         </div>
       </Paper>
-    )) : (<p>Loading...</p>)
+    )) : <ProfileSkeleton />;
 
     return profileMarkup;
   }

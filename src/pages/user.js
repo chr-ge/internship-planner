@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import axios from 'axios';
 import Internship from '../components/internship/Internship';
 import StaticProfile from '../components/profile/StaticProfile';
+import InternshipSkeleton from '../util/InternshipSkeleton';
+import ProfileSkeleton from '../util/ProfileSkeleton';
 
 //material-ui
 import Grid from '@material-ui/core/Grid';
@@ -36,7 +38,7 @@ class user extends Component {
         const { internshipIdParam } = this.state;
 
         const internshipsMarkup = loading
-            ? <p>Loading...</p>
+            ? <InternshipSkeleton />
             : internships === null
             ? <p>No internships from this user</p>
             : !internshipIdParam
@@ -56,7 +58,7 @@ class user extends Component {
                 </Grid>
                 <Grid item sm={4} xs={12}>
                     {this.state.profile === null 
-                        ? <p>Loading profile...</p>
+                        ? <ProfileSkeleton />
                         : <StaticProfile profile={this.state.profile} />}
                 </Grid>
             </Grid>
