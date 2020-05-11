@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import dayjs from 'dayjs';
 import MyButton from '../util/MyButton';
+import EditDetails from './EditDetails';
 import theme from "../util/theme";
 
 //material-ui
@@ -21,7 +22,6 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
 
-
 const styles = {
     ...theme.css
 };
@@ -37,6 +37,10 @@ class Profile extends Component {
   handleEditPicture = (event) => {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
+  }
+
+  handleLogout = () => {
+    this.props.logoutUser();
   }
 
   render() {
@@ -87,6 +91,10 @@ class Profile extends Component {
             <CalendarToday color="primary"/>{' '}
             <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
           </div>
+          <MyButton tip="Logout" onClick={this.handleLogout}>
+              <KeyboardReturn color="primary" />
+          </MyButton>
+          <EditDetails />
         </div>
       </Paper>
     ) : (
