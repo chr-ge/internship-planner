@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import MyButton from '../../util/MyButton';
 import { Link } from 'react-router-dom';
-import PostInternship from '../scream/PostScream';
+import PostInternship from '../scream/PostInternship';
 import Notifications from './Notifications';
 
 //material-ui

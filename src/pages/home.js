@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import Internship from '../components/Internship';
 import Profile from '../components/Profile';
 
 //material-ui
 import Grid from '@material-ui/core/Grid';
+//Redux
+import { connect } from 'react-redux';
+import { getInternships } from '../redux/actions/dataActions';
 
-export class home extends Component {
-    state = {
-        internships: null
-    }
-    
+export class home extends Component {  
     componentDidMount(){
-        axios.get('/internships')
-            .then(result => {
-                this.setState({
-                    internships: result.data
-                })
-            })
-            .catch(error => console.log(error));
+        this.getInternships();
     }
 
     render() {
-        let recentInternshipsMarkup = this.state.internships 
-            ? (this.state.internships.map((internship) => 
+        const { internships, loading } = this.props.data;
+        let recentInternshipsMarkup = !loading
+            ? (internships.map((internship) => 
                 <Internship key={internship.internshipId} internship={internship} />)) 
             : <p>Loading...</p>;
         return (
@@ -39,4 +33,13 @@ export class home extends Component {
     }
 }
 
-export default home
+home.propTypes = {
+    data: PropTypes.object.isRequired,
+    getInternships: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    data: state.data,
+});
+
+export default connect(mapStateToProps, { getInternships })(home);

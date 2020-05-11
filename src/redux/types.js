@@ -8,3 +8,8 @@ export const SET_ERRORS = 'SET_ERRORS';
 export const LOADING_UI = 'LOADING_UI';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 //Data Reducer Types
+export const SET_INTERNSHIPS = 'SET_INTERNSHIPS';
+export const SET_INTERNSHIP = 'SET_INTERNSHIP';
+export const LOADING_DATA = 'LOADING_DATA';
+export const LIKE_INTERNSHIP = 'LIKE_INTERNSHIP';
+export const UNLIKE_INTERNSHIP = 'UNLIKE_INTERNSHIP';
