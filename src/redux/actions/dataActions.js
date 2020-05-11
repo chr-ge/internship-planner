@@ -19,9 +19,9 @@ export const getInternships = () => (dispatch) => {
         });
 }
 
-export const likeInternship = (screamId) => (dispatch) => {
+export const likeInternship = (internshipId) => (dispatch) => {
     axios
-        .get(`/internship/${screamId}/like`)
+        .get(`/internship/${internshipId}/like`)
         .then((result) => {
             dispatch({
                 type: LIKE_INTERNSHIP,
@@ -31,9 +31,9 @@ export const likeInternship = (screamId) => (dispatch) => {
         .catch((error) => console.log(error));
 }
 
-export const unlikeInternship = (screamId) => (dispatch) => {
+export const unlikeInternship = (internshipId) => (dispatch) => {
     axios
-        .get(`/internship/${screamId}/unlike`)
+        .get(`/internship/${internshipId}/unlike`)
         .then((result) => {
             dispatch({
                 type: UNLIKE_INTERNSHIP,

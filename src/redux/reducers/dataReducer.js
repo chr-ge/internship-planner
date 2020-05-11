@@ -22,8 +22,11 @@ export default function(state = initialState, action){
         case LIKE_INTERNSHIP: 
         case UNLIKE_INTERNSHIP:
             let index = state.internships
-                .findIndex((internship) => internship.internshipId === action.payload.screamId);
+                .findIndex((internship) => internship.internshipId === action.payload.internshipId);
                 state.internships[index] = action.payload;
+            if (state.internship.internshipId === action.payload.internshipId) {
+                state.internship = action.payload;
+            }
             return {
                 ...state
             }

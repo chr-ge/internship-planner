@@ -21,6 +21,8 @@ import signup from './pages/signup';
 
 const theme = createMuiTheme(themeObject);
 
+//axios.defaults.baseURL = 'https://us-east4-internshipplanner.cloudfunctions.net/api';
+
 const token = localStorage.FBidToken;
 if(token){
   const decodedToken = jwtDecode(token);

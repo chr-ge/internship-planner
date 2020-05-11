@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import MyButton from '../../util/MyButton';
+import MyButton from '../util/MyButton';
 import { Link } from 'react-router-dom';
-import PostInternship from '../scream/PostInternship';
-import Notifications from './Notifications';
+// import PostInternship from '../scream/PostInternship';
+// import Notifications from './Notifications';
 
 //material-ui
 import AppBar from '@material-ui/core/AppBar';
@@ -22,13 +22,13 @@ export class Navbar extends Component {
                 <Toolbar className="nav-container">
                     {authenticated ? (
                         <>
-                            <PostInternship />
+                            {/* <PostInternship /> */}
                             <Link to="/">
                                 <MyButton tip="Home">
                                     <HomeIcon />
                                 </MyButton>
                             </Link>
-                            <Notifications />
+                            {/* <Notifications /> */}
                         </>
                     ) : (
                         <>

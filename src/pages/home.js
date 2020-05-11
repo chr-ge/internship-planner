@@ -11,7 +11,7 @@ import { getInternships } from '../redux/actions/dataActions';
 
 export class home extends Component {  
     componentDidMount(){
-        this.getInternships();
+        this.props.getInternships();
     }
 
     render() {

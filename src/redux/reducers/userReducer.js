@@ -38,15 +38,15 @@ export default function(state = initialState, action){
                     ...state.likes,
                     {
                         userHandle: state.credentials.handle,
-                        screamId: action.payload.internshipId
+                        internshipId: action.payload.internshipId
                     }
                 ]
             };
         case UNLIKE_INTERNSHIP:
-        return {
-            ...state,
-            likes: state.likes.filter((like) => like.internshipId === action.payload.internshipId)
-        };
+            return {
+                ...state,
+                likes: state.likes.filter((like) => like.internshipId !== action.payload.internshipId)
+            };
         default:
             return state;
     }
