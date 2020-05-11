@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MyButton from '../../util/MyButton';
 import { Link } from 'react-router-dom';
 import PostInternship from '../internship/PostInternship';
-// import Notifications from './Notifications';
+import Notifications from './Notifications';
 
 //material-ui
 import AppBar from '@material-ui/core/AppBar';
@@ -28,7 +28,7 @@ class Navbar extends Component {
                                     <HomeIcon />
                                 </MyButton>
                             </Link>
-                            {/* <Notifications /> */}
+                            <Notifications />
                         </>
                     ) : (
                         <>

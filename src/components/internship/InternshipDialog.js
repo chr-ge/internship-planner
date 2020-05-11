@@ -52,7 +52,9 @@ const styles = {
 
 class InternshipDialog extends Component {
     state = {
-        open: false
+        open: false,
+        oldPath: '',
+        newPath: ''
     }
 
     componentDidMount(){
@@ -62,11 +64,18 @@ class InternshipDialog extends Component {
     }
 
     handleOpen = () => {
-        this.setState({ open: true });
+        let oldPath = window.location.pathname;
+        const { userHandle, internshipId } = this.props;
+        const newPath = `/users/${userHandle}/i/${internshipId}`;
+        if(oldPath === newPath) oldPath = `/users/${userHandle}`;
+        window.history.pushState(null, null, newPath);
+
+        this.setState({ open: true, oldPath: oldPath, newPath: newPath });
         this.props.getInternship(this.props.internshipId);
     }
 
     handleClose = () => {
+        window.history.pushState(null, null, this.state.oldPath);
         this.setState({ open: false });
         this.props.clearErrors();
     }
