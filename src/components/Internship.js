@@ -7,6 +7,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import MyButton from '../util/MyButton';
 import LikeButton from './LikeButton';
 import DeleteInternship from './DeleteInternship';
+import InternshipDialog from './InternshipDialog';
 
 //material-ui
 import Card from '@material-ui/core/Card';
@@ -69,6 +70,7 @@ export class Internship extends Component {
                         <ChatIcon color="primary" />
                     </MyButton>
                     <span>{commentCount} {commentCount === 1 ? 'Comment' : 'Comments'}</span>
+                    <InternshipDialog internshipId={internshipId} userHandle={userHandle} />
                 </CardContent>
             </Card>
         )

@@ -130,6 +130,6 @@ PostInternship.propTypes = {
 
 const mapStateToProps = (state) => ({
     UI: state.UI,
-  });
+});
 
 export default connect(mapStateToProps, { postInternship, clearErrors })(withStyles(styles)(PostInternship));

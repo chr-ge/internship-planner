@@ -1,4 +1,4 @@
-import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP, POST_INTERNSHIP } from '../types';
+import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP, POST_INTERNSHIP, SET_INTERNSHIP } from '../types';
 
 const initialState = {
     internships: [],
@@ -19,6 +19,11 @@ export default function(state = initialState, action){
                 internships: action.payload,
                 loading: false
             };
+        case SET_INTERNSHIP:
+            return {
+                ...state,
+                internship: action.payload
+            }
         case LIKE_INTERNSHIP: 
         case UNLIKE_INTERNSHIP:
             let index = state.internships

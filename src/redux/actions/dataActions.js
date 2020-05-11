@@ -1,6 +1,6 @@
 import { 
-    SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP,
-    DELETE_INTERNSHIP, SET_ERRORS, CLEAR_ERRORS, POST_INTERNSHIP, LOADING_UI
+    SET_INTERNSHIPS, SET_INTERNSHIP, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP,
+    DELETE_INTERNSHIP, SET_ERRORS, CLEAR_ERRORS, POST_INTERNSHIP, LOADING_UI, STOP_LOADING_UI
 } from '../types';
 import axios from 'axios';
 
@@ -21,6 +21,20 @@ export const getInternships = () => (dispatch) => {
             });
         });
 };
+
+export const getInternship = (internship) => (dispatch) => {
+    dispatch({ type: LOADING_UI })
+    axios
+        .get(`/internship/${internship}`)
+        .then((result) => {
+            dispatch({
+                type: SET_INTERNSHIP,
+                payload: result.data
+            });
+            dispatch({ type: STOP_LOADING_UI });
+        })
+        .catch((error) => console.log(error));
+}
 
 export const postInternship = (newInternship) => (dispatch) => {
     dispatch({ type: LOADING_UI })
