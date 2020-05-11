@@ -1,4 +1,4 @@
-import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP } from '../types';
+import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP, POST_INTERNSHIP } from '../types';
 
 const initialState = {
     internships: [],
@@ -35,6 +35,14 @@ export default function(state = initialState, action){
                 ...state,
                 internships: state.internships.filter((internship) => 
                     internship.internshipId !== action.payload )
+            }
+        case POST_INTERNSHIP:
+            return {
+                ...state,
+                internships: [
+                    action.payload,
+                    ...state.internships
+                ]
             }
         default:
             return state;

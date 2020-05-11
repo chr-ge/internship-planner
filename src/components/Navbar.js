@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import MyButton from '../util/MyButton';
 import { Link } from 'react-router-dom';
-// import PostInternship from '../scream/PostInternship';
+import PostInternship from './PostInternship';
 // import Notifications from './Notifications';
 
 //material-ui
@@ -22,7 +22,7 @@ export class Navbar extends Component {
                 <Toolbar className="nav-container">
                     {authenticated ? (
                         <>
-                            {/* <PostInternship /> */}
+                            <PostInternship />
                             <Link to="/">
                                 <MyButton tip="Home">
                                     <HomeIcon />

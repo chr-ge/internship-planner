@@ -4,12 +4,13 @@ export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
 export const SET_USER = 'SET_USER';
 export const LOADING_USER = 'LOADING_USER';
 //Ui Reducer Types
-export const SET_ERRORS = 'SET_ERRORS';
 export const LOADING_UI = 'LOADING_UI';
+export const SET_ERRORS = 'SET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 //Data Reducer Types
 export const SET_INTERNSHIPS = 'SET_INTERNSHIPS';
 export const SET_INTERNSHIP = 'SET_INTERNSHIP';
+export const POST_INTERNSHIP = 'POST_INTERNSHIP';
 export const LOADING_DATA = 'LOADING_DATA';
 export const LIKE_INTERNSHIP = 'LIKE_INTERNSHIP';
 export const UNLIKE_INTERNSHIP = 'UNLIKE_INTERNSHIP';

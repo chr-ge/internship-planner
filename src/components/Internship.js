@@ -17,7 +17,6 @@ import Typography from '@material-ui/core/Typography';
 import ChatIcon from '@material-ui/icons/Chat';
 //Redux
 import { connect } from 'react-redux';
-//import { likeInternship, unlikeInternship } from '../redux/actions/dataActions';
 
 const styles = {
     card: {
@@ -35,21 +34,6 @@ const styles = {
 }
 
 export class Internship extends Component {
-    likedInternship = () => {
-        if(this.props.user.likes && this.props.user.likes.find(
-                like => like.internshipId === this.props.internshipId))
-            return true;
-        else return false;
-    }
-
-    likeInternship = () => {
-        this.props.likeInternship(this.props.internship.internshipId);
-    }
-
-    unlikeInternship = () => {
-        this.props.unlikeInternship(this.props.internship.internshipId);
-    }
-
     render() {
         dayjs.extend(relativeTime);
 

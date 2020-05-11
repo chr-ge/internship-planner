@@ -1,4 +1,7 @@
-import { SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP, DELETE_INTERNSHIP } from '../types';
+import { 
+    SET_INTERNSHIPS, LOADING_DATA, LIKE_INTERNSHIP, UNLIKE_INTERNSHIP,
+    DELETE_INTERNSHIP, SET_ERRORS, CLEAR_ERRORS, POST_INTERNSHIP, LOADING_UI
+} from '../types';
 import axios from 'axios';
 
 export const getInternships = () => (dispatch) => {
@@ -17,7 +20,26 @@ export const getInternships = () => (dispatch) => {
                 payload: []
             });
         });
-}
+};
+
+export const postInternship = (newInternship) => (dispatch) => {
+    dispatch({ type: LOADING_UI })
+    axios
+        .post('/createInternship', newInternship)
+        .then((result) => {
+            dispatch({
+                type: POST_INTERNSHIP,
+                payload: result.data
+            });
+            dispatch({ type: CLEAR_ERRORS });
+        })
+        .catch((error) => {
+            dispatch({
+                type: SET_ERRORS,
+                payload: error.response.data
+            });
+        });
+};
 
 export const likeInternship = (internshipId) => (dispatch) => {
     axios
@@ -29,7 +51,7 @@ export const likeInternship = (internshipId) => (dispatch) => {
             });
         })
         .catch((error) => console.log(error));
-}
+};
 
 export const unlikeInternship = (internshipId) => (dispatch) => {
     axios
@@ -41,7 +63,7 @@ export const unlikeInternship = (internshipId) => (dispatch) => {
             });
         })
         .catch((error) => console.log(error));
-}
+};
 
 export const deleteInternship = (internshipId) => (dispatch) => {
     axios
@@ -53,4 +75,4 @@ export const deleteInternship = (internshipId) => (dispatch) => {
             });
         })
         .catch((error) => console.log(error));
-}
+};
