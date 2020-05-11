@@ -16,20 +16,23 @@ import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 //Redux
 import { connect } from 'react-redux';
-import { postInternship } from '../redux/actions/dataActions';
+import { postInternship, clearErrors } from '../redux/actions/dataActions';
 
 const styles = {
     ...theme.css,
-    submitButton: {
-        position: 'relative'
-    },
-    progressSpinner: {
-        position: 'absolute'
-    },
     closeButton: {
         position: 'absolute',
         left: '91%',
-        top: '10%'
+        top: '6%'
+    },
+    submitButton: {
+        position: 'relative',
+        float: 'right',
+        marginTop: 10,
+        marginBotton: 15
+    },
+    progressSpinner: {
+        position: 'absolute'
     }
 }
 
@@ -45,8 +48,7 @@ export class PostInternship extends Component {
             this.setState({ errors : nextProps.UI.errors });
         }
         if(!nextProps.UI.errors && !nextProps.UI.loading){
-            this.setState({ body : '' });
-            this.handleClose();
+            this.setState({ body : '', open: false, errors: {} });
         }
     }
 
@@ -55,6 +57,7 @@ export class PostInternship extends Component {
     }
 
     handleClose = () => {
+        this.props.clearErrors();
         this.setState({ open: false, errors: {} });
     }
 
@@ -122,10 +125,11 @@ PostInternship.propTypes = {
     classes: PropTypes.object.isRequired,
     UI: PropTypes.object.isRequired,
     postInternship: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     UI: state.UI,
   });
 
-export default connect(mapStateToProps, { postInternship })(withStyles(styles)(PostInternship));
+export default connect(mapStateToProps, { postInternship, clearErrors })(withStyles(styles)(PostInternship));

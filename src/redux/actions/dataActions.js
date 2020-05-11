@@ -76,3 +76,7 @@ export const deleteInternship = (internshipId) => (dispatch) => {
         })
         .catch((error) => console.log(error));
 };
+
+export const clearErrors = () => (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS });
+}
