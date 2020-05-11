@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
+import LikeButton from './LikeButton';
 import dayjs from 'dayjs';
-import theme from "../util/theme";
+import theme from "../../util/theme";
 
 //material-ui
 import Grid from '@material-ui/core/Grid';
@@ -15,12 +16,17 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 //icons
 import CloseIcon from '@material-ui/icons/Close';
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
+import ChatIcon from '@material-ui/icons/Chat';
 //Redux
 import { connect } from 'react-redux';
-import { getInternship } from '../redux/actions/dataActions';
+import { getInternship } from '../../redux/actions/dataActions';
 
 const styles = {
     ...theme.css,
+    expandButton:{
+        position: 'absolute',
+        left: '91%'
+    },
     profileImage: {
         width: 200,
         height: 200,
@@ -30,6 +36,10 @@ const styles = {
     },
     dialogContent: {
         padding: 20
+    },
+    spinnerDiv:{
+        textAlign: 'center',
+        margin: '50px 0'
     },
     closeButton: {
         position: 'absolute',
@@ -59,7 +69,7 @@ export class InternshipDialog extends Component {
         } = this.props;
 
         const dialogMarkup = loading 
-            ? <CircularProgress/> 
+            ? <div className={classes.spinnerDiv}><CircularProgress size={50}/></div>
             : ( <Grid container spacing={2}>
                     <Grid item sm={5}>
                         <img src={userImage} alt="User" className={classes.profileImage} />
@@ -81,6 +91,12 @@ export class InternshipDialog extends Component {
                         <Typography variant="body1">
                             {body}
                         </Typography>
+                        <LikeButton internshipId={internshipId}/>
+                        <span>{likeCount} {likeCount === 1 ? 'Like' : 'Likes'}</span>
+                        <MyButton tip="comments">
+                            <ChatIcon color="primary" />
+                        </MyButton>
+                        <span>{commentCount} {commentCount === 1 ? 'Comment' : 'Comments'}</span>
                     </Grid>
                 </Grid>)
 

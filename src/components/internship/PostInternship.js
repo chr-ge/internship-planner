@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import MyButton from '../util/MyButton';
-import theme from "../util/theme";
+import MyButton from '../../util/MyButton';
+import theme from "../../util/theme";
 
 //material-ui
 import TextField from '@material-ui/core/TextField';
@@ -16,7 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 //Redux
 import { connect } from 'react-redux';
-import { postInternship, clearErrors } from '../redux/actions/dataActions';
+import { postInternship, clearErrors } from '../../redux/actions/dataActions';
 
 const styles = {
     ...theme.css,

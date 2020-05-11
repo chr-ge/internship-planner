@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Internship from '../components/Internship';
-import Profile from '../components/Profile';
+import Internship from '../components/internship/Internship';
+import Profile from '../components/profile/Profile';
 
 //material-ui
 import Grid from '@material-ui/core/Grid';

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import dayjs from 'dayjs';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import EditDetails from './EditDetails';
-import theme from "../util/theme";
+import theme from "../../util/theme";
 
 //material-ui
 import Button from '@material-ui/core/Button';
@@ -20,7 +20,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 //Redux
 import { connect } from 'react-redux';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 
 const styles = {
     ...theme.css

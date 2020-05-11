@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import { Link } from 'react-router-dom';
-import PostInternship from './PostInternship';
+import PostInternship from '../internship/PostInternship';
 // import Notifications from './Notifications';
 
 //material-ui

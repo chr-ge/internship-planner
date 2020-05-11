@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
 import DeleteInternship from './DeleteInternship';
 import InternshipDialog from './InternshipDialog';
