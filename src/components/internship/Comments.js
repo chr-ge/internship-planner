@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
-    ...theme,
+    ...theme.css,
     commentImage: {
         maxWidth: '100%',
         height: 100,
@@ -41,7 +41,7 @@ class Comments extends Component {
                                             <Typography 
                                                 variant="h5"
                                                 component={Link}
-                                                to={`/user/${userHandle}`}
+                                                to={`/users/${userHandle}`}
                                             >
                                                 {userHandle}
                                             </Typography>
