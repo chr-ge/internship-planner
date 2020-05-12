@@ -24,6 +24,8 @@ export default {
     },
     image: {
       margin: "20px auto",
+      width: 150,
+      height: 150
     },
     pageTitle: {
       margin: "10px auto",
