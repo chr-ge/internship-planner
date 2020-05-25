@@ -1,26 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import jwtDecode from 'jwt-decode';
-import AuthRoute from './util/AuthRoute';
 import axios from 'axios';
-import './App.css';
-import themeObject from './util/theme';
+import Routes from './components/layout/Routes';
 //Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getUserData } from './redux/actions/userActions';
-//Components
-import Navbar from './components/layout/Navbar';
-//Pages
-import home from './pages/home';
-import login from './pages/login';
-import signup from './pages/signup';
-import user from './pages/user';
-
-const theme = createMuiTheme(themeObject);
 
 axios.defaults.baseURL = 'https://us-east4-internshipplanner.cloudfunctions.net/api';
 
@@ -40,24 +26,11 @@ if(token){
 class App extends Component {
   render(){
     return (
-      <MuiThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Router>
-            <Navbar />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={home}/>
-                <AuthRoute exact path="/login" component={login}/>
-                <AuthRoute exact path="/signup" component={signup}/>
-                <Route exact path="/users/:handle" component={user}/>
-                <Route exact path="/users/:handle/i/:internshipId" component={user}/>
-              </Switch>
-            </div>
-          </Router>
-        </Provider>
-      </MuiThemeProvider>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     );
   }
 }
 
-export default App;
+export default (App);

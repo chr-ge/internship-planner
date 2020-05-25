@@ -9,6 +9,8 @@ export const LOADING_UI = 'LOADING_UI';
 export const SET_ERRORS = 'SET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const STOP_LOADING_UI = 'STOP_LOADING_UI';
+export const SET_DARK_MODE = 'SET_DARK_MODE';
+export const UNSET_DARK_MODE  = 'UNSET_DARK_MODE';
 //Data Reducer Types
 export const SET_INTERNSHIPS = 'SET_INTERNSHIPS';
 export const SET_INTERNSHIP = 'SET_INTERNSHIP';
