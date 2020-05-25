@@ -66,9 +66,7 @@ class Internship extends Component {
                     <Typography variant="body1">{body}</Typography>
                     <LikeButton internshipId={internshipId} />
                     <span>{likeCount} {likeCount === 1 ? 'Like' : 'Likes'}</span>
-                    <MyButton tip="comments">
-                        <ChatIcon color="primary" />
-                    </MyButton>
+                    <ChatIcon color="primary" />
                     <span>{commentCount} {commentCount === 1 ? 'Comment' : 'Comments'}</span>
                     <InternshipDialog internshipId={internshipId} userHandle={userHandle} openDialog={this.props.openDialog}/>
                 </CardContent>
