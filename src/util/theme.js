@@ -15,6 +15,10 @@ export default {
   },
   typography: {
     useNextVariants: true,
+    h5: {
+      fontFamily: 'Bree Serif',
+      color: ''
+    }
   },
   css: {
     form: {
@@ -77,10 +81,7 @@ export default {
         textAlign: "center",
         "& span, svg": {
           verticalAlign: "middle",
-        },
-        "& a": {
-          color: "#00bcd4",
-        },
+        }
       },
       "& hr": {
         border: "none",

@@ -20,6 +20,12 @@ export default {
     },
     typography: {
       useNextVariants: true,
+      h5: {
+        fontFamily: 'Bree Serif'
+      },
+      link: {
+        fontFamily: 'Bree Serif'
+      }
     },
     css: {
       form: {
@@ -55,7 +61,7 @@ export default {
       },
       visibleSeparator: {
         width: "100%",
-        borderBottom: "1px solid rgba(0,0,0,0.1)",
+        borderBottom: "1px solid rgb(34, 96, 137)",
         marginBottom: 20,
       },
       paper: {
@@ -82,10 +88,7 @@ export default {
           textAlign: "center",
           "& span, svg": {
             verticalAlign: "middle",
-          },
-          "& a": {
-            color: "#00bcd4",
-          },
+          }
         },
         "& hr": {
           border: "none",
