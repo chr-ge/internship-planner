@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from "@material-ui/core/CssBaseline";
 import AuthRoute from '../../util/AuthRoute';
 import themeObject from '../../util/theme';
 import themeDarkObject from '../../util/themeDark';
+
 //Components
 import Navbar from '../../components/layout/Navbar';
 //Pages
@@ -27,6 +29,7 @@ class Routes extends Component {
                     ? createMuiTheme(themeDarkObject)
                     : createMuiTheme(themeObject)}
              >
+                <CssBaseline />
                 <Router>
                     <Navbar />
                     <div className="container">

@@ -1,5 +1,6 @@
 export default {
     palette: {
+      type: 'dark',
       primary: {
         light: "#B0F4E6",
         main: "#226089",
@@ -12,6 +13,10 @@ export default {
         dark: "#12D3CF",
         contrastText: "#FCF9EC",
       },
+      background: {
+        default: "#256e9b",
+        paper: "#7aadca"
+      }
     },
     typography: {
       useNextVariants: true,

@@ -31,7 +31,7 @@ class Navbar extends Component {
             <AppBar>
                 <Toolbar className="nav-container">
                     {authenticated 
-                        ? <>
+                        ?   <>
                                 <PostInternship />
                                 <Link to="/">
                                     <MyButton tip="Home">
