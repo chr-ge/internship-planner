@@ -2,7 +2,7 @@
 
 # Internship Planner
 
-### Live demo: https://internshipplanner.web.app/
+### Live app: https://internshipplanner.web.app/
 
 ## Features
 - [x] Authentication
